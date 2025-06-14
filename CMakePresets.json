@@ -13,7 +13,8 @@
       "cacheVariables": {
           "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
           "CMAKE_BUILD_TYPE": "Release"
-      }
+      },
+      "generator": "Ninja"
     },
     {
       "name": "fprime-debug",
@@ -22,7 +23,8 @@
       "description": "F´ debug build using local fprime-venv",
       "cacheVariables": {
           "CMAKE_BUILD_TYPE": "Debug"
-      }
+      },
+      "generator": "Ninja"
     },
     {
       "name": "fprime-ut",
@@ -32,29 +34,8 @@
       "binaryDir": "${sourceDir}/build-fprime-automatic-native-ut",
       "cacheVariables": {
           "BUILD_TESTING": "ON"
-      }
-    },
-      {
-        "name": "fprime-ninja",
-        "inherits": "fprime",
-        "displayName": "F´ Release (Ninja) Preset",
-        "description": "F´ release build using ninja and local fprime-venv",
-        "generator": "Ninja"
       },
-      {
-        "name": "fprime-debug-ninja",
-        "inherits": "fprime-debug",
-        "displayName": "F´ Debug (Ninja) Preset",
-        "description": "F´ debug build using ninja and local fprime-venv",
-        "generator": "Ninja"
-      },
-      {
-        "name": "fprime-ut-ninja",
-        "inherits": "fprime-ut",
-        "displayName": "F´ Unit Test (Ninja) Preset",
-        "description": "F´ debug build including unit tests using ninja and local fprime-venv",
-        "binaryDir": "${sourceDir}/build-fprime-automatic-native-ut",
-        "generator": "Ninja"
-      }
+      "generator": "Ninja"
+    }
     ]
 }
