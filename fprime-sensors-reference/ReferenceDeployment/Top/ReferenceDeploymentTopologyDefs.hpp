@@ -11,6 +11,7 @@
 #include "Svc/FramingProtocol/FprimeProtocol.hpp"
 #include "Svc/Health/Health.hpp"
 #include "fprime-sensors/NmeaGps/Subtopology/SubtopologyTopologyDefs.hpp"
+#include "fprime-sensors/MpuImu/Subtopology/SubtopologyTopologyDefs.hpp"
 
 
 // Definitions are placed within a namespace named after the deployment
@@ -29,6 +30,8 @@ struct TopologyState {
 
     const CHAR* gpsDevice;
     U32 gpsBaud;
+
+    MpuImu::SubtopologyState mpu;
 };
 
 /**

@@ -53,6 +53,7 @@ int main(int argc, char* argv[]) {
     U16 port_number = 50000;
     const CHAR* gps_device = "/dev/ttyACM0";
     U32 gps_baud = 9600;
+    const CHAR* imu_device = "/dev/i2c-1";
     Os::init();
 
     // Loop while reading the getopt supplied options
@@ -91,6 +92,7 @@ int main(int argc, char* argv[]) {
     inputs.port = port_number;
     inputs.gpsDevice = gps_device;
     inputs.gpsBaud = gps_baud;
+    inputs.mpu.device = imu_device;
 
     // Setup program shutdown via Ctrl-C
     signal(SIGINT, signalHandler);

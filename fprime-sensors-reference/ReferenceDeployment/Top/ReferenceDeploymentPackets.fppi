@@ -138,7 +138,11 @@ telemetry packets ReferenceDeploymentPackets {
     NmeaGps.gpsManager.Reading
   }
 
-  packet GpsSubtopologyUtility id 23 group 3 {
+  packet ImuData id 23 group 1 {
+    MpuImu.imuManager.Reading
+  }
+
+  packet GpsSubtopologyUtility id 24 group 3 {
     NmeaGps.driver.BytesSent
     NmeaGps.driver.BytesRecv
     NmeaGps.bufferManager.EmptyBuffs
