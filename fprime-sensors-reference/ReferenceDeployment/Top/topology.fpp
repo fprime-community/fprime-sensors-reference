@@ -20,6 +20,7 @@ module ReferenceDeployment {
   topology ReferenceDeployment {
     import NmeaGps.Subtopology
     import MpuImu.Subtopology
+    import Bmp280.Subtopology
 
     # ----------------------------------------------------------------------
     # Instances used in the topology
