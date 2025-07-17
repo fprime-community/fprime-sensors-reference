@@ -21,6 +21,7 @@ telemetry packets ReferenceDeploymentPackets {
     ReferenceDeployment.comQueue.buffQueueDepth
     # Note: Uncomment when using Svc:TlmPacketizer
     # ReferenceDeployment.tlmSend.SendLevel
+    Bmp280.bmpManager.Reading
   }
 
   packet CDHErrors id 2 group 1 {
