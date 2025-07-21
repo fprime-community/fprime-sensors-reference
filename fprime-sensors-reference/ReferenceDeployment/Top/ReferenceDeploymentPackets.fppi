@@ -155,4 +155,6 @@ telemetry packets ReferenceDeploymentPackets {
 
 } omit {
   ReferenceDeployment.cmdDisp.CommandErrors
+  # NOTE: uncomment if wrong. 
+  Bmp280.bmpDriver.SPI_Bytes
 }

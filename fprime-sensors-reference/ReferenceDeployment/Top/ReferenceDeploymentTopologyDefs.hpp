@@ -12,6 +12,7 @@
 #include "Svc/Health/Health.hpp"
 #include "fprime-sensors/NmeaGps/Subtopology/SubtopologyTopologyDefs.hpp"
 #include "fprime-sensors/MpuImu/Subtopology/SubtopologyTopologyDefs.hpp"
+#include "fprime-sensors/Bmp280/Subtopology/SubtopologyTopologyDefs.hpp"
 
 
 // Definitions are placed within a namespace named after the deployment
@@ -32,6 +33,7 @@ struct TopologyState {
     U32 gpsBaud;
 
     MpuImu::SubtopologyState mpu;
+    Bmp280::SubtopologyState bmp;
 };
 
 /**
