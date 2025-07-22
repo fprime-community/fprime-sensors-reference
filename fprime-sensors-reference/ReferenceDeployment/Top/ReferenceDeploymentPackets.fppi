@@ -21,7 +21,7 @@ telemetry packets ReferenceDeploymentPackets {
     ReferenceDeployment.comQueue.buffQueueDepth
     # Note: Uncomment when using Svc:TlmPacketizer
     # ReferenceDeployment.tlmSend.SendLevel
-    Bmp280.bmpManager.Reading
+    # Bmp280.bmpManager.Reading
   }
 
   packet CDHErrors id 2 group 1 {
@@ -143,7 +143,11 @@ telemetry packets ReferenceDeploymentPackets {
     MpuImu.imuManager.Reading
   }
 
-  packet GpsSubtopologyUtility id 24 group 3 {
+  packet BmpData id 24 group 1 {
+    Bmp280.bmpManager.Reading
+  }
+
+  packet GpsSubtopologyUtility id 25 group 3 {
     NmeaGps.driver.BytesSent
     NmeaGps.driver.BytesRecv
     NmeaGps.bufferManager.EmptyBuffs

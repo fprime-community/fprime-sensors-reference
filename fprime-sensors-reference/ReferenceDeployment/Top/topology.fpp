@@ -129,6 +129,7 @@ module ReferenceDeployment {
       rateGroup1.RateGroupMemberOut[2] -> systemResources.run
       rateGroup1.RateGroupMemberOut[3] -> comQueue.run
       rateGroup1.RateGroupMemberOut[4] -> MpuImu.imuManager.run
+      rateGroup1.RateGroupMemberOut[5] -> Bmp280.bmpManager.run
 
       # Rate group 2
       rateGroupDriver.CycleOut[Ports_RateGroups.rateGroup2] -> rateGroup2.CycleIn
