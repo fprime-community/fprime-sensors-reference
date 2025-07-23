@@ -54,7 +54,6 @@ module ReferenceDeployment {
     instance systemResources
     instance version
     instance linuxTimer
-
     instance NmeaGps.bufferManager
     instance NmeaGps.driver
 

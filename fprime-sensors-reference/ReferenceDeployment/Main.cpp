@@ -94,7 +94,7 @@ int main(int argc, char* argv[]) {
     inputs.gpsBaud = gps_baud;
     inputs.mpu.device = imu_device;
     inputs.bmp.device.device = 0; // SPI bus 0
-    inputs.bmp.device.select = 0; // SPI chip select 0
+    inputs.bmp.device.select = 1; // SPI chip select 0
 
     // Setup program shutdown via Ctrl-C
     signal(SIGINT, signalHandler);
