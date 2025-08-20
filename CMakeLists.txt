@@ -16,4 +16,4 @@ fprime_setup_included_code()
 
 
 # This includes project-wide objects
-add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/fprime-sensors-reference")
+add_fprime_subdirectory("${CMAKE_CURRENT_LIST_DIR}/FprimeSensorsReference")

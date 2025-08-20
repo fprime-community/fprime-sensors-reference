@@ -4,7 +4,7 @@
 //
 // ======================================================================
 // Used to access topology functions
-#include <fprime-sensors-reference/ReferenceDeployment/Top/ReferenceDeploymentTopology.hpp>
+#include <FprimeSensorsReference/ReferenceDeployment/Top/ReferenceDeploymentTopology.hpp>
 // OSAL initialization
 #include <Os/Os.hpp>
 // Used for signal handling shutdown
@@ -34,7 +34,7 @@ void print_usage(const char* app) {
  * @param signum
  */
 static void signalHandler(int signum) {
-    ReferenceDeployment::stopSimulatedCycle();
+    ReferenceDeployment::stopRateGroups();
 }
 
 /**
@@ -49,15 +49,13 @@ static void signalHandler(int signum) {
  */
 int main(int argc, char* argv[]) {
     I32 option = 0;
-    const CHAR* hostname = "0.0.0.0";
-    U16 port_number = 50000;
-    const CHAR* gps_device = "/dev/ttyACM0";
-    U32 gps_baud = 9600;
-    const CHAR* imu_device = "/dev/i2c-1";
+    CHAR* hostname = nullptr;
+    U16 port_number = 0;
+
     Os::init();
 
     // Loop while reading the getopt supplied options
-    while ((option = getopt(argc, argv, "hp:a:d:b:")) != -1) {
+    while ((option = getopt(argc, argv, "hp:a:")) != -1) {
         switch (option) {
             // Handle the -a argument for address/hostname
             case 'a':
@@ -66,14 +64,6 @@ int main(int argc, char* argv[]) {
             // Handle the -p port number argument
             case 'p':
                 port_number = static_cast<U16>(atoi(optarg));
-                break;
-            // Case 'd' GPS
-            case 'd':
-                gps_device = optarg;
-                break;
-            // Handle the -p port number argument
-            case 'b':
-                gps_baud = static_cast<U32>(atoi(optarg));
                 break;
             // Cascade intended: help output
             case 'h':
@@ -85,14 +75,12 @@ int main(int argc, char* argv[]) {
                 return (option == 'h') ? 0 : 1;
         }
     }
-
-    // Object for communicating state to the reference topology
+    // Object for communicating state to the topology
     ReferenceDeployment::TopologyState inputs;
     inputs.hostname = hostname;
     inputs.port = port_number;
-    inputs.gpsDevice = gps_device;
-    inputs.gpsBaud = gps_baud;
-    inputs.mpu.device = imu_device;
+    inputs.gps.device = "/dev/ttyACM0";
+    inputs.gps.baud = 9600;
 
     // Setup program shutdown via Ctrl-C
     signal(SIGINT, signalHandler);
@@ -101,7 +89,7 @@ int main(int argc, char* argv[]) {
 
     // Setup, cycle, and teardown topology
     ReferenceDeployment::setupTopology(inputs);
-    ReferenceDeployment::startSimulatedCycle(Fw::TimeInterval(1,0));  // Program loop cycling rate groups at 1Hz
+    ReferenceDeployment::startRateGroups(Fw::TimeInterval(1,0));  // Program loop cycling rate groups at 1Hz
     ReferenceDeployment::teardownTopology(inputs);
     (void)printf("Exiting...\n");
     return 0;
