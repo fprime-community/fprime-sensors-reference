@@ -20,6 +20,7 @@ module ReferenceDeployment {
     import DataProducts.Subtopology
     import FileHandling.Subtopology
     import NmeaGps.Subtopology
+    import MpuImu.Subtopology
     import Bmp280.Subtopology
     
   # ----------------------------------------------------------------------

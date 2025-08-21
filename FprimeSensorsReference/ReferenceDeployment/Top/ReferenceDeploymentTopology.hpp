@@ -8,9 +8,6 @@
 // Included for access to ReferenceDeployment::TopologyState and ReferenceDeployment::ConfigObjects::pingEntries. These definitions are required by the
 // autocoder, but are also used in this hand-coded topology.
 #include <FprimeSensorsReference/ReferenceDeployment/Top/ReferenceDeploymentTopologyDefs.hpp>
-#include "fprime-sensors/NmeaGps/Subtopology/SubtopologyTopologyDefs.hpp"
-#include "fprime-sensors/MpuImu/Subtopology/SubtopologyTopologyDefs.hpp"
-#include "fprime-sensors/Bmp280/Subtopology/SubtopologyTopologyDefs.hpp"
 
 // Remove unnecessary ReferenceDeployment:: qualifications
 using namespace ReferenceDeployment;
