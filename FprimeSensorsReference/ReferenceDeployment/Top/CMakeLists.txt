@@ -17,6 +17,5 @@ register_fprime_module(
     SOURCES
         "${CMAKE_CURRENT_LIST_DIR}/ReferenceDeploymentTopology.cpp"
     DEPENDS
-        Drv_TcpServer
-        fprime-sensors_NmeaGps_Components_NmeaDetector
+        Fw_Logger
 )

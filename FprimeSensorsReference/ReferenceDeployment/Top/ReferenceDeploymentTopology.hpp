@@ -7,7 +7,10 @@
 #define REFERENCEDEPLOYMENT_REFERENCEDEPLOYMENTTOPOLOGY_HPP
 // Included for access to ReferenceDeployment::TopologyState and ReferenceDeployment::ConfigObjects::pingEntries. These definitions are required by the
 // autocoder, but are also used in this hand-coded topology.
-#include <fprime-sensors-reference/ReferenceDeployment/Top/ReferenceDeploymentTopologyDefs.hpp>
+#include <FprimeSensorsReference/ReferenceDeployment/Top/ReferenceDeploymentTopologyDefs.hpp>
+#include "fprime-sensors/NmeaGps/Subtopology/SubtopologyTopologyDefs.hpp"
+#include "fprime-sensors/MpuImu/Subtopology/SubtopologyTopologyDefs.hpp"
+#include "fprime-sensors/Bmp280/Subtopology/SubtopologyTopologyDefs.hpp"
 
 // Remove unnecessary ReferenceDeployment:: qualifications
 using namespace ReferenceDeployment;
@@ -67,20 +70,18 @@ void teardownTopology(const TopologyState& state);
  * achieved. This function mimics the cycling via a Task::delay(milliseconds) loop that manually invokes the ISR call
  * to the example block driver.
  *
- * This loop is stopped via a startSimulatedCycle call.
  *
- * Note: projects should replace this with a component that produces an output port call at the appropriate frequency.
+ * This loop is stopped via a stopRateGroups call.
  *
- * \param milliseconds: milliseconds to delay for each cycle. Default: 1000 or 1Hz.
  */
-void startSimulatedCycle(Fw::TimeInterval interval = Fw::TimeInterval(1,0));
+void startRateGroups(Fw::TimeInterval interval = Fw::TimeInterval(1,0));
 
 /**
- * \brief stop the simulated cycle started by startSimulatedCycle
+ * \brief stop the rate groups 
  *
- * This stops the cycle started by startSimulatedCycle.
+ * This stops the cycle started by startRateGroups.
  */
-void stopSimulatedCycle();
+void stopRateGroups();
 
 } // namespace ReferenceDeployment
 #endif
