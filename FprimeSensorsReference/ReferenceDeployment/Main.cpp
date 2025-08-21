@@ -81,6 +81,9 @@ int main(int argc, char* argv[]) {
     inputs.port = port_number;
     inputs.gps.device = "/dev/ttyACM0";
     inputs.gps.baud = 9600;
+    inputs.mpu.device = "/dev/i2c-1";
+    inputs.bmp.device.device = 0; // SPI bus 0
+    inputs.bmp.device.select = 0; // SPI chip select 0, NOTE: check wiring on board for correct chip select
 
     // Setup program shutdown via Ctrl-C
     signal(SIGINT, signalHandler);

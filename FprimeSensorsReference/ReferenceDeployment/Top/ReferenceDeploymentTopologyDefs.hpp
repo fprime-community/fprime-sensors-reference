@@ -25,8 +25,11 @@
 // Include autocoded FPP constants
 #include "FprimeSensorsReference/ReferenceDeployment/Top/FppConstantsAc.hpp"
 
-// NmeaGps Subtopology includes
+// NmeaGps, MpuImu, Bmp280 Subtopology includes
 #include "fprime-sensors/NmeaGps/Subtopology/SubtopologyTopologyDefs.hpp"
+#include "fprime-sensors/MpuImu/Subtopology/SubtopologyTopologyDefs.hpp"
+#include "fprime-sensors/Bmp280/Subtopology/SubtopologyTopologyDefs.hpp"
+
 
 /**
  * \brief required ping constants
@@ -71,7 +74,10 @@ struct TopologyState {
     ComCcsds::SubtopologyState comCcsds;         //!< Subtopology state for ComCcsds 
     DataProducts::SubtopologyState dataProducts; //!< Subtopology state for DataProducts
     FileHandling::SubtopologyState fileHandling; //!< Subtopology state for FileHandling
-    NmeaGps::SubtopologyState gps;               //!< Subtopology state for NmeaGps
+    NmeaGps::SubtopologyState gps;               //!< Subtopology state for NmeaGps 
+    MpuImu::SubtopologyState mpu;                //!< Subtopology state for MpuImu
+    Bmp280::SubtopologyState bmp;                //!< Subtopology state for Bmp280 
+
 };
 
 namespace PingEntries = ::PingEntries;
