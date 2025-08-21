@@ -74,9 +74,7 @@ struct TopologyState {
     ComCcsds::SubtopologyState comCcsds;         //!< Subtopology state for ComCcsds 
     DataProducts::SubtopologyState dataProducts; //!< Subtopology state for DataProducts
     FileHandling::SubtopologyState fileHandling; //!< Subtopology state for FileHandling
-    NmeaGps::SubtopologyState gps;               //!< Subtopology state for NmeaGps
-    const CHAR* gpsDevice; 
-    U32 gpsBaud; 
+    NmeaGps::SubtopologyState gps;               //!< Subtopology state for NmeaGps 
     MpuImu::SubtopologyState mpu;                //!< Subtopology state for MpuImu
     Bmp280::SubtopologyState bmp;                //!< Subtopology state for Bmp280 
 

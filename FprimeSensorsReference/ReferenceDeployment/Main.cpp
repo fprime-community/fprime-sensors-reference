@@ -79,8 +79,8 @@ int main(int argc, char* argv[]) {
     ReferenceDeployment::TopologyState inputs;
     inputs.hostname = hostname;
     inputs.port = port_number;
-    inputs.gpsDevice = "/dev/ttyACM0";
-    inputs.gpsBaud = 9600;
+    inputs.gps.device = "/dev/ttyACM0";
+    inputs.gps.baud = 9600;
     inputs.mpu.device = "/dev/i2c-1";
     inputs.bmp.device.device = 0; // SPI bus 0
     inputs.bmp.device.select = 0; // SPI chip select 0, NOTE: check wiring on board for correct chip select
