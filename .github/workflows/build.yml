@@ -21,12 +21,17 @@ concurrency:
   cancel-in-progress: ${{ !contains(github.ref, 'devel') && !contains(github.ref, 'release/')}}
 
 jobs:
-  cross-compile:
+  setup-cross-compiler:
+    uses: ./lib/fprime/.github/workflows/reusable-setup-aarch64-linux.yml
+    with:
+      runs_on: ubuntu-latest
+
+  build-reference:
     runs-on: ubuntu-latest
+    needs: setup-cross-compiler
     steps:
-    - name: "Install dependencies"
-      uses: ./lib/fprime/.github/workflows/reusable-setup-aarch64-linux.yml
-    - name: "Build Reference Deployment"
-      run: |
-        fprime-util generate aarch64-linux
-        fprime-util build aarch64-linux
+      - uses: actions/checkout@v4
+      - name: "Build Reference Deployment"
+        run: |
+          fprime-util generate aarch64-linux
+          fprime-util build aarch64-linux
