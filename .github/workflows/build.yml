@@ -28,12 +28,20 @@ jobs:
     runs-on: ubuntu-latest
     needs: setup-cross-compiler
     steps:
+
+      # Normal repo setup
       - uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      # Do the F Prime setup
       - uses: kevin-f-ortega/fprime/.github/actions/setup@devel
 
+      # Make sure we have the cross compiler
       - name: "Confirm cross compiler availability"
         run: which aarch64-none-linux-gnu-gcc || echo "Compiler not found!"
 
+      # Build the reference deployment
       - name: "Build Reference Deployment"
         run: |
           fprime-util generate aarch64-linux
