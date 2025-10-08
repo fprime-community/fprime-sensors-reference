@@ -19,7 +19,7 @@ concurrency:
 
 jobs:
   setup-cross-compiler:
-    uses: ./lib/fprime/.github/workflows/reusable-setup-aarch64-linux.yml
+    uses: kevin-f-ortega/fprime/.github/workflows/reusable-setup-aarch64-linux.yml@sock-testing
     with:
       runs_on: ubuntu-latest
 
