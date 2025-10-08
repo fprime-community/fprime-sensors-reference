@@ -18,11 +18,11 @@ concurrency:
   cancel-in-progress: ${{ !contains(github.ref, 'devel') && !contains(github.ref, 'release/')}}
 
 jobs:
+  uses: kevin-f-ortega/fprime/.github/workflows/reusable-setup-aarch64-linux.yml@sock-testing
   build-reference:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: kevin-f-ortega/fprime/.github/workflows/reusable-setup-aarch64-linux.yml@sock-testing
       - uses: kevin-f-ortega/fprime/.github/actions/setup@devel
 
       - name: "Confirm cross compiler availability"
