@@ -2,20 +2,17 @@
 
 name: Cross-compile reference deployment
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
     branches: [ devel, release/** ]
   pull_request:
-    # The branches below must be a subset of the branches above
     branches: [ devel, release/** ]
     paths-ignore:
       - 'docs/**'
       - '**.md'
       - '.github/actions/spelling/**'
       - '.github/ISSUE_TEMPLATE/**'
-# Cancel in-progress runs if a newer run is started on a given PR
+
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: ${{ !contains(github.ref, 'devel') && !contains(github.ref, 'release/')}}
@@ -31,7 +28,12 @@ jobs:
     needs: setup-cross-compiler
     steps:
       - uses: actions/checkout@v4
+
+      - name: "Confirm cross compiler availability"
+        run: which aarch64-none-linux-gnu-gcc || echo "Compiler not found!"
+
       - name: "Build Reference Deployment"
         run: |
           fprime-util generate aarch64-linux
           fprime-util build aarch64-linux
+
