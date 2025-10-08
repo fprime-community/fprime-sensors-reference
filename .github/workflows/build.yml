@@ -32,6 +32,8 @@ jobs:
       - name: "Confirm cross compiler availability"
         run: which aarch64-none-linux-gnu-gcc || echo "Compiler not found!"
 
+      - uses: kevin-f-ortega/fprime/.github/actions/setup
+
       - name: "Build Reference Deployment"
         run: |
           fprime-util generate aarch64-linux
