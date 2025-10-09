@@ -42,6 +42,8 @@ jobs:
         run: |
           export ARM_TOOLS_PATH=${{ needs.setup-cross-compiler.outputs.toolchain-path }}
           export PATH=${ARM_TOOLS_PATH}/bin:$PATH
+          ls $ARM_TOOLS_PATH
+          ls $ARM_TOOLS_PATH/bin
           fprime-util generate aarch64-linux
           fprime-util build aarch64-linux
 
