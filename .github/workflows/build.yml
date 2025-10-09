@@ -37,7 +37,7 @@ jobs:
           aarch64-none-linux-gnu-gcc -v
 
       - name: Set up F Prime
-        uses: nasa/fprime-actions/setup
+        uses: nasa/fprime-actions/setup@devel
 
       - name: Cross compile
         run: |
