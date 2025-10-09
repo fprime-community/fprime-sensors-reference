@@ -19,14 +19,7 @@ concurrency:
 
 jobs:
 
-  setup-cross-compile:
-    uses: kevin-f-ortega/fprime/.github/workflows/reusable-setup-aarch64-linux.yml@sock-testing
-
   cross-compile:
-    runs-on: ubuntu-latest
-    needs: setup-cross-compile
-    steps:
-      # Build the reference deployment
-      - name: "Build Reference Deployment"
-        run: |
-          cat /tmp/a/a.txt
+    uses: kevin-f-ortega/fprime/.github/workflows/reusable-setup-aarch64-linux.yml@sock-testing
+    with:
+      runs_on: ubuntu-latest
