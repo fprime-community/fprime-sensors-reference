@@ -20,7 +20,7 @@ concurrency:
 jobs:
 
   cross-compile:
-    uses: kevin-f-ortega/fprime/.github/workflows/reusable-setup-aarch64-linux.yml@sock-testing
+    uses: kevin-f-ortega/fprime/.github/workflows/reusable-setup-aarch64-linux.yml@soak-testing
     with:
       runs_on: ubuntu-latest
 
