@@ -24,4 +24,4 @@ jobs:
 
     steps:
       - name: Cross compile
-        uses: kevin-f-ortega/fprime-actions/build-with-aarch64-toolchain@aarch64-linux-cross-compile
+        uses: nasa/fprime-actions/build-with-aarch64-toolchain@devel
