@@ -33,6 +33,10 @@ jobs:
         with:
           fetch-depth: 0
           submodules: true
+      - name: "Download Build Artifacts"
+        uses: actions/download-artifact@v4
+        with:
+          name: build-artifacts
       - name: "List files from cross-compile job"
         run: |
           ls -la build-artifacts
