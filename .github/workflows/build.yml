@@ -41,7 +41,7 @@ jobs:
       - name: "Build Reference Deployment"
         run: |
           export ARM_TOOLS_PATH=${{ needs.setup-cross-compiler.outputs.toolchain-path }}
-          echo "${ARM_TOOLS_PATH}/bin" >> $GITHUB_PATH
+          export PATH=${ARM_TOOLS_PATH}/bin:$PATH
           fprime-util generate aarch64-linux
           fprime-util build aarch64-linux
 
