@@ -20,23 +20,18 @@ concurrency:
 jobs:
 
   cross-compile:
-    uses: kevin-f-ortega/fprime/.github/workflows/reusable-setup-aarch64-linux.yml@soak-testing
-    with:
-      runs_on: ubuntu-latest
-
-  run-test:
-    needs: cross-compile
     runs-on: ubuntu-latest
+
     steps:
-      - name: "Checkout F´ Repository"
+      - name: Checkout repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-          submodules: true
-      - name: "Download Build Artifacts"
-        uses: actions/download-artifact@v4
-        with:
-          name: build-artifacts
-      - name: "List files from cross-compile job"
+          submodules: recursive
+
+      - name: Setup cross-compiler
+        uses: kevin-f-ortega/fprime-actions/setup-aarch64-toolchain@aarch64-linux-cross-compile
+
+      - name: Verify compiler is in PATH
         run: |
-          ls -la build-artifacts
+          which aarch64-none-linux-gnu-gcc
+          aarch64-none-linux-gnu-gcc -v
