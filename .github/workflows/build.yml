@@ -19,29 +19,22 @@ concurrency:
 
 jobs:
 
-  setup-cross-compiler:
-    uses: kevin-f-ortega/fprime/.github/workflows/reusable-setup-aarch64-linux.yml@sock-testing
-    with:
-      runs_on: ubuntu-latest
-
-  build-reference:
+  cross-compile:
     runs-on: ubuntu-latest
-    needs: setup-cross-compiler
     steps:
-
-      # Normal repo setup
       - uses: actions/checkout@v4
         with:
           submodules: true
 
-      # Do the F Prime setup
-      - uses: kevin-f-ortega/fprime/.github/actions/setup@devel
+      - name: "Setup aarch64-linux compiler"
+        uses: kevin-f-ortega/fprime/.github/workflows/reusable-setup-aarch64-linux.yml@sock-testing
 
-      # Build the reference deployment
+      - name: Do the F Prime setup
+        uses: kevin-f-ortega/fprime/.github/actions/setup@devel
+
       - name: "Build Reference Deployment"
         run: |
-          export ARM_TOOLS_PATH=${{ needs.setup-cross-compiler.outputs.toolchain-path }}
-          export PATH=${ARM_TOOLS_PATH}/bin:$PATH
+          export ARM_TOOLS_PATH=${{ steps.setup-aarch64-linux-compiler.outputs.toolchain-path }}
           ls $ARM_TOOLS_PATH
           ls $ARM_TOOLS_PATH/bin
           fprime-util generate aarch64-linux
