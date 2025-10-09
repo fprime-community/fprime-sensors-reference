@@ -23,3 +23,16 @@ jobs:
     uses: kevin-f-ortega/fprime/.github/workflows/reusable-setup-aarch64-linux.yml@sock-testing
     with:
       runs_on: ubuntu-latest
+
+  run-test:
+    needs: cross-compile
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout F´ Repository"
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: true
+      - name: "List files from cross-compile job"
+        run: |
+          ls -la build-artifacts
