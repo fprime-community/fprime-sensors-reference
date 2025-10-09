@@ -23,23 +23,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-        with:
-          submodules: recursive
-
-      - name: Setup cross-compiler
-        uses: kevin-f-ortega/fprime-actions/setup-aarch64-toolchain@aarch64-linux-cross-compile
-
-      - name: Verify compiler is in PATH
-        run: |
-          which aarch64-none-linux-gnu-gcc
-          aarch64-none-linux-gnu-gcc -v
-
-      - name: Set up F Prime
-        uses: nasa/fprime-actions/setup@devel
-
       - name: Cross compile
-        run: |
-          fprime-util generate aarch64-linux
-          fprime-util build aarch64-linux
+        uses: kevin-f-ortega/fprime-actions/build-with-aarch64@aarch64-linux-cross-compile
