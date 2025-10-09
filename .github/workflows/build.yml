@@ -35,3 +35,11 @@ jobs:
         run: |
           which aarch64-none-linux-gnu-gcc
           aarch64-none-linux-gnu-gcc -v
+
+      - name: Set up F Prime
+        uses: nasa/fprime-actions/setup
+
+      - name: Cross compile
+        run: |
+          fprime-util generate aarch64-linux
+          fprime-util build aarch64-linux
