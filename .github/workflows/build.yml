@@ -7,6 +7,8 @@ on:
     branches: [ devel, release/** ]
   pull_request:
     branches: [ devel, release/** ]
+    # pr-** branches are built in F Prime repo
+    branches-ignore: [ pr-** ]
     paths-ignore:
       - 'docs/**'
       - '**.md'
