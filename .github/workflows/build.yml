@@ -7,8 +7,6 @@ on:
     branches: [ devel, release/** ]
   pull_request:
     branches: [ devel, release/** ]
-    # pr-** branches are built in F Prime repo
-    branches-ignore: [ pr-** ]
     paths-ignore:
       - 'docs/**'
       - '**.md'
@@ -25,5 +23,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          sbmodules: recursive
+
+      - name: Set up F Prime
+        uses: nasa/fprime-actions/setup@devel
+
       - name: Cross compile
         uses: nasa/fprime-actions/build-with-aarch64-toolchain@devel
+        with:
+          toolchain-url: https://developer.arm.com/-/media/Files/downloads/gnu-a/10.2-2020.11/binrel/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu.tar.xz
