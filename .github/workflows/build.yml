@@ -20,7 +20,7 @@ concurrency:
 jobs:
 
   cross-compile:
-    runs-on: ubuntu-latest
+    runs-on: apple-ci
 
     steps:
 
