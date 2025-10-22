@@ -1,0 +1,38 @@
+# Cross-Compile Reference Deployment
+
+name: Cross-compile reference deployment
+
+on:
+  push:
+    branches: [ devel, release/** ]
+  pull_request:
+    branches: [ devel, release/** ]
+    paths-ignore:
+      - 'docs/**'
+      - '**.md'
+      - '.github/actions/spelling/**'
+      - '.github/ISSUE_TEMPLATE/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ !contains(github.ref, 'devel') && !contains(github.ref, 'release/')}}
+
+jobs:
+
+  cross-compile:
+    runs-on: apple-ci
+
+    steps:
+
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Set up F Prime
+        uses: nasa/fprime-actions/setup@devel
+
+      - name: Cross compile
+        uses: nasa/fprime-actions/build-with-aarch64-toolchain@devel
+        with:
+          toolchain-url: https://developer.arm.com/-/media/Files/downloads/gnu-a/10.2-2020.11/binrel/gcc-arm-10.2-2020.11-x86_64-aarch64-none-linux-gnu.tar.xz
