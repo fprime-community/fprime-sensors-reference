@@ -46,6 +46,9 @@ void configureTopology() {
     rateGroup2.configure(rateGroup2Context, FW_NUM_ARRAY_ELEMENTS(rateGroup2Context));
     rateGroup3.configure(rateGroup3Context, FW_NUM_ARRAY_ELEMENTS(rateGroup3Context));
 
+    comLogEvent.init_log_file("eventLog", 10 * 1024 * 1024); // 10 MB max
+    comLogTlm.init_log_file("telemetryLog", 10 * 1024 * 1024); // 10 MB max
+
     // Command sequencer needs to allocate memory to hold contents of command sequences
     cmdSeq.allocateBuffer(0, mallocator, 5 * 1024);
 }
