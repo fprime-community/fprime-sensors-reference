@@ -46,6 +46,16 @@ module ReferenceDeployment {
     stack size Default.STACK_SIZE \
     priority 117
 
+  instance comLogEvent: Svc.ComLogger base id 0x10005000 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 18
+
+  instance comLogTlm: Svc.ComLogger base id 0x10006000 \
+    queue size Default.QUEUE_SIZE \
+    stack size Default.STACK_SIZE \
+    priority 18
+
   # ----------------------------------------------------------------------
   # Queued component instances
   # ----------------------------------------------------------------------
@@ -62,6 +72,11 @@ module ReferenceDeployment {
   instance systemResources: Svc.SystemResources base id 0x10012000
 
   instance timer: Svc.LinuxTimer base id 0x10013000
+
   instance comDriver: Drv.TcpServer base id 0x10014000
+
+  instance comSplitterEvent: Svc.ComSplitter base id 0x10015000
+
+  instance comSplitterTlm: Svc.ComSplitter base id 0x10016000
 
 }

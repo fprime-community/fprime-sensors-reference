@@ -35,6 +35,10 @@ module ReferenceDeployment {
     instance timer
     instance comDriver
     instance cmdSeq
+    instance comLogEvent
+    instance comLogTlm
+    instance comSplitterEvent
+    instance comSplitterTlm
 
   # ----------------------------------------------------------------------
   # Pattern graph specifiers
@@ -60,8 +64,12 @@ module ReferenceDeployment {
 
     connections ComCcsds_CdhCore {
       # Core events and telemetry to communication queue
-      CdhCore.events.PktSend -> ComCcsds.comQueue.comPacketQueueIn[ComCcsds.Ports_ComPacketQueue.EVENTS]
-      CdhCore.tlmSend.PktSend -> ComCcsds.comQueue.comPacketQueueIn[ComCcsds.Ports_ComPacketQueue.TELEMETRY]
+      CdhCore.events.PktSend -> comSplitterEvent.comIn
+      comSplitterEvent.comOut[0] -> ComCcsds.comQueue.comPacketQueueIn[ComCcsds.Ports_ComPacketQueue.EVENTS]
+      comSplitterEvent.comOut[1] -> comLogEvent.comIn
+      CdhCore.tlmSend.PktSend -> comSplitterTlm.comIn
+      comSplitterTlm.comOut[0] -> ComCcsds.comQueue.comPacketQueueIn[ComCcsds.Ports_ComPacketQueue.TELEMETRY]
+      comSplitterTlm.comOut[1] -> comLogTlm.comIn
 
       # Router to Command Dispatcher
       ComCcsds.fprimeRouter.commandOut -> CdhCore.cmdDisp.seqCmdBuff
@@ -136,6 +144,7 @@ module ReferenceDeployment {
       NmeaGps.driver.allocate -> NmeaGps.bufferManager.bufferGetCallee
       NmeaGps.driver.deallocate -> NmeaGps.bufferManager.bufferSendIn
     }
+
   }
 
 }
